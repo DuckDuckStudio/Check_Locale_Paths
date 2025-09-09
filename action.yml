@@ -1,0 +1,53 @@
+name: Check Locale Paths
+description: 检查你的网站项目中是否意外的使用了本地路径。
+author: 鸭鸭「カモ」(@DuckDuckStudio)
+
+branding:
+  color: green
+  icon: check
+
+inputs:
+  formats:
+    required: false
+    description: 需要检查的文件的格式。以 , 分隔
+    default: html,css,js
+
+  skip_files:
+    required: false
+    description: 跳过的文件。
+
+  skip_folders:
+    required: false
+    description: 跳过的文件夹。
+
+runs:
+  using: composite
+  steps:
+    - name: 签出仓库
+      uses: actions/checkout@v5
+
+    - name: 设置 Node.js 环境
+      uses: actions/setup-node@v5
+      with:
+        node-version: "latest"
+
+    - name: 获取脚本
+      shell: bash
+      run: |
+        git clone https://github.com/DuckDuckStudio/Check_Locale_Paths -b main
+        cp Check_Locale_Paths/index.mjs Check_Locale_Paths.mjs
+        rm -r Check_Locale_Paths
+
+    - name: 安装依赖
+      shell: bash
+      run: npm install glob
+
+    - name: 检查本地路径
+      shell: bash
+      env:
+        FORMATS: ${{ inputs.formats }}
+        SKIP_FILES: ${{ inputs.skip_files }}
+        SKIP_FOLDERS: ${{ inputs.skip_folders }}
+      run: |
+        node Check_Locale_Paths.mjs
+        rm Check_Locale_Paths.mjs
