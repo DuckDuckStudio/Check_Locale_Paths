@@ -1,0 +1,28 @@
+{
+  "name": "check_locale_paths",
+  "version": "1.0.0",
+  "description": "检查你的网站项目中是否意外的使用了本地路径。",
+  "keywords": [
+    "checker",
+    "locale_paths",
+    "paths"
+  ],
+  "homepage": "https://github.com/DuckDuckStudio/Check_Locale_Paths",
+  "bugs": {
+    "url": "https://github.com/DuckDuckStudio/Check_Locale_Paths/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DuckDuckStudio/Check_Locale_Paths.git"
+  },
+  "license": "AGPL-3.0-only",
+  "author": "鸭鸭「カモ」 (@DuckDuckStudio)",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node index.mjs"
+  },
+  "dependencies": {
+    "glob": "^11.0.3"
+  }
+}
