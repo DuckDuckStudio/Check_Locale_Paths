@@ -41,8 +41,9 @@ jobs:
         uses: DuckDuckStudio/Check_Locale_Paths@1.0.0
         with:
           skip_files: Tools/Fufu_Tools/minimum/index.html
-          skip_folders: Tools/Fufu_Tools/wiki,node_modules
-          formats: html,css,js,md
+          skip_folders: Tools/Fufu_Tools/wiki
+          # 默认
+          # formats: html,css,js
 ```
 
 ## 星星 🌟
