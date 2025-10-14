@@ -27,7 +27,7 @@ runs:
       uses: actions/checkout@v5
 
     - name: 设置 Node.js 环境
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v6
       with:
         node-version: "latest"
 
