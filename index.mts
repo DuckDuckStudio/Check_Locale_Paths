@@ -4,9 +4,15 @@ import { relative } from 'path';
 
 // 匹配绝对路径或包含驱动器的路径
 const pattern = /(?:[A-Z]:\\)/g;
-const fileFormats = process.env.FORMATS.split(',').map(format => `**/*.${format.trim()}`);
-const skipFiles = process.env.SKIP_FILES.split(',').map(file => file.trim());
-const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim());
+const fileFormats = process.env["FORMATS"]?.split(',').map(format => `**/*.${format.trim()}`);
+
+if (!fileFormats || fileFormats.length === 0) {
+    console.error("✕ 请通过环境变量 'FORMATS' 指定要检查的文件格式");
+    process.exit(1);
+}
+
+const skipFiles = process.env["SKIP_FILES"]?.split(',').map(file => file.trim()) || [];
+const skipFolders = process.env["SKIP_FOLDERS"]?.split(',').map(file => file.trim()) || [];
 
 let foundPath = false; // 用于跟踪是否已经找到路径
 
@@ -33,7 +39,7 @@ fileFormats.forEach(globPattern => {
             let match;
             while ((match = pattern.exec(line)) !== null) {
                 // 检测是否是绝对路径
-                if (/^[A-Z]:\\/.test(match[0]) || /^\/[^\/:*?"<>|\r\n]/.test(match[0])) {
+                if (/^[A-Z]:\\/.test(match[0]) || /^\/[^/:*?"<>|\r\n]/.test(match[0])) {
                     // 打印检测到的路径
                     console.error(`✕ 在 ${filePath} 检测到本地路径: ${match[0]}`);
                     foundPath = true;

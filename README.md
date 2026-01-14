@@ -11,18 +11,17 @@
 
 | 参数 | 描述 | 默认值 | 是否必须 | 备注 |
 |-----|-----|-----|-----|-----|
-| `formats` | 需要检查的文件格式，以 `,` 分隔 | `html,css,js` | 否 | / |
+| `formats` | 需要检查的文件格式，以 `,` 分隔 | `html,css,js,mjs,ts,mts` | 否 | / |
 | `skip_files` | 跳过的文件，以 `,` 分隔 | / | 否 | / |
-| `skip_folders` | 跳过的文件夹，以 `,` 分隔 | / | 否 | / |
+| `skip_folders` | 跳过的文件夹，以 `,` 分隔 | `node_modules` | 否 | / |
 
 ## 使用示例
 ```yaml
 name: 检查本地路径
 
-# GitHub Action DuckDuckStudio/Check_Locale_Paths 版本 1.0.0 示例工作流
+# GitHub Action DuckDuckStudio/Check_Locale_Paths 版本 2.0.0 示例工作流
 # https://github.com/marketplace/actions/check-locale-paths
-# 通过 [GNU Affero General Public License v3.0](https://github.com/DuckDuckStudio/Check_Locale_Paths/blob/main/LICENSE) 许可
-# 此工作流最初通过 [GNU Affero General Public License v3.0](https://github.com/DuckDuckStudio/yazicbs.github.io/blob/main/LICENSE.txt) 从 DuckDuckStudio/yazicbs.github.io 获得许可。
+# 通过 [Apache License v2.0](https://github.com/DuckDuckStudio/Check_Locale_Paths/blob/main/LICENSE) 许可
 
 on:
   push:
@@ -38,7 +37,7 @@ jobs:
 
     steps:
       - name: 检查本地路径
-        uses: DuckDuckStudio/Check_Locale_Paths@1.0.0
+        uses: DuckDuckStudio/Check_Locale_Paths@2.0.0
         with:
           skip_files: Tools/Fufu_Tools/minimum/index.html
           skip_folders: Tools/Fufu_Tools/wiki
