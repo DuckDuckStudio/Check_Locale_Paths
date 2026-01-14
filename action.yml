@@ -10,7 +10,7 @@ inputs:
   formats:
     required: false
     description: 需要检查的文件的格式。以 , 分隔
-    default: html,css,js
+    default: html,css,js,mjs,ts,mts
 
   skip_files:
     required: false
@@ -19,6 +19,7 @@ inputs:
   skip_folders:
     required: false
     description: 跳过的文件夹。
+    default: node_modules
 
 runs:
   using: composite
@@ -29,11 +30,11 @@ runs:
     - name: 设置 Node.js 环境
       uses: actions/setup-node@v6
       with:
-        node-version: "latest"
+        node-version: latest
 
     - name: 获取脚本
       shell: bash
-      run: |
+      run: |-
         git clone https://github.com/DuckDuckStudio/Check_Locale_Paths -b main
         cp Check_Locale_Paths/index.mjs Check_Locale_Paths.mjs
         rm -r Check_Locale_Paths
@@ -48,6 +49,6 @@ runs:
         FORMATS: ${{ inputs.formats }}
         SKIP_FILES: ${{ inputs.skip_files }}
         SKIP_FOLDERS: ${{ inputs.skip_folders }}
-      run: |
+      run: |-
         node Check_Locale_Paths.mjs
         rm Check_Locale_Paths.mjs
