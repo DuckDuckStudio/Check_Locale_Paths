@@ -39,10 +39,10 @@ jobs:
       - name: 检查本地路径
         uses: DuckDuckStudio/Check_Locale_Paths@2.0.0
         with:
-          skip_files: Tools/Fufu_Tools/minimum/index.html
-          skip_folders: Tools/Fufu_Tools/wiki
+          skip_files: skiped.html
           # 默认
-          # formats: html,css,js
+          # skip_folders: node_modules
+          # formats: html,css,js,mjs,ts,mts
 ```
 
 ## 星星 🌟
