@@ -33,7 +33,7 @@ fileFormats.forEach(globPattern => {
             let match;
             while ((match = pattern.exec(line)) !== null) {
                 // 检测是否是绝对路径
-                if (/^[A-Z]:\\/.test(match[0]) || /^\/[^\/:*?"<>|\r\n]/.test(match[0])) {
+                if (/^[A-Z]:\\/.test(match[0]) || /^\/[^/:*?"<>|\r\n]/.test(match[0])) {
                     // 打印检测到的路径
                     console.error(`✕ 在 ${filePath} 检测到本地路径: ${match[0]}`);
                     foundPath = true;

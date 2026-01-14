@@ -1,6 +1,6 @@
 {
   "name": "check_locale_paths",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "检查你的网站项目中是否意外的使用了本地路径。",
   "keywords": [
     "checker",
@@ -15,14 +15,20 @@
     "type": "git",
     "url": "git+https://github.com/DuckDuckStudio/Check_Locale_Paths.git"
   },
-  "license": "AGPL-3.0-only",
+  "license": "Apache-2.0",
   "author": "鸭鸭「カモ」 (@DuckDuckStudio)",
   "type": "module",
   "main": "index.mjs",
   "scripts": {
-    "test": "node index.mjs"
+    "test": "node index.mjs",
+    "lint": "npx eslint --rule \"semi: [error, always]\""
   },
   "dependencies": {
     "glob": "^13.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0"
   }
 }
