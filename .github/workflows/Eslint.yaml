@@ -22,5 +22,5 @@ jobs:
       - name: 运行 Eslint
         shell: bash
         run: |-
-          npm install
-          npx eslint --rule "semi: [error, always]"
+          npm ci
+          npm run lint
