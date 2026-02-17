@@ -41,7 +41,7 @@ runs:
 
     - name: 安装依赖
       shell: bash
-      run: npm install glob
+      run: npm ci --production
 
     - name: 检查本地路径
       shell: bash
