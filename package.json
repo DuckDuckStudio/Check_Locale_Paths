@@ -24,7 +24,7 @@
     "lint": "npx eslint --rule \"semi: [error, always]\""
   },
   "dependencies": {
-    "glob": "^13.0.5"
+    "glob": "^13.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
