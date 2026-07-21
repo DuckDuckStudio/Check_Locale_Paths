@@ -19,7 +19,7 @@
 ```yaml
 name: 检查本地路径
 
-# GitHub Action DuckDuckStudio/Check_Locale_Paths 版本 2.0.0 示例工作流
+# GitHub Action DuckDuckStudio/Check_Locale_Paths 版本 3.0.2 示例工作流
 # https://github.com/marketplace/actions/check-locale-paths
 # 通过 [Apache License v2.0](https://github.com/DuckDuckStudio/Check_Locale_Paths/blob/main/LICENSE) 许可
 
@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: 检查本地路径
-        uses: DuckDuckStudio/Check_Locale_Paths@2.0.0
+        uses: DuckDuckStudio/Check_Locale_Paths@3.0.2
         with:
           skip_files: skiped.html
           # 默认
