@@ -20,12 +20,15 @@
   "type": "module",
   "main": "index.mjs",
   "scripts": {
-    "lint": "eslint --rule \"semi: [error, always]\""
+    "lint": "eslint --rule \"semi: [error, always]\"",
+    "build": "tsc"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
     "eslint": "^10.11.0",
-    "globals": "^17.13.0"
+    "globals": "^17.13.0",
+    "typescript": "^6.0.3"
   },
   "devEngines": {
     "packageManager": {
