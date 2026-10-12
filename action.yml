@@ -22,31 +22,5 @@ inputs:
     default: node_modules
 
 runs:
-  using: composite
-  steps:
-    - name: 签出仓库
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      with:
-        persist-credentials: false
-
-    - name: 设置 Node.js 环境
-      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-      with:
-        node-version: latest
-
-    - name: 获取脚本
-      shell: bash
-      run: |-
-        git clone https://github.com/DuckDuckStudio/Check_Locale_Paths -b main
-        cp Check_Locale_Paths/dist/index.mjs Check_Locale_Paths.mjs
-        rm -r Check_Locale_Paths
-
-    - name: 检查本地路径
-      shell: bash
-      env:
-        FORMATS: ${{ inputs.formats }}
-        SKIP_FILES: ${{ inputs.skip_files }}
-        SKIP_FOLDERS: ${{ inputs.skip_folders }}
-      run: |-
-        node Check_Locale_Paths.mjs
-        rm Check_Locale_Paths.mjs
+  using: node24
+  main: dist/index.mjs
