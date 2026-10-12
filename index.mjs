@@ -1,8 +1,10 @@
 import { readdirSync, readFileSync } from 'fs';
 import { join, relative } from 'path';
 
-// 匹配绝对路径或包含驱动器的路径
-const pattern = /(?:[A-Z]:\\)/g;
+/**
+ * 匹配 Windows 驱动器前缀的正则。
+ */
+const pattern = /[A-Z]:\\/g;
 const fileFormats = process.env.FORMATS.split(',').map(format => `**/*.${format.trim()}`);
 const skipFiles = process.env.SKIP_FILES.split(',').map(file => file.trim());
 const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim());
