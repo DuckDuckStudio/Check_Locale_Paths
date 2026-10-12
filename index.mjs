@@ -5,12 +5,18 @@ import { join, relative } from 'path';
  * 匹配 Windows 驱动器前缀的正则。
  */
 const pattern = /[A-Z]:\\/g;
+
+/** 需要检查的文件的后缀 */
 const fileFormats = process.env.FORMATS.split(',').map(format => `**/*.${format.trim()}`);
+
+/** 跳过的文件 */
 const skipFiles = process.env.SKIP_FILES.split(',').map(file => file.trim());
+
+/** 跳过的文件夹 */
 const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim());
 
 /**
- * 扫描指定目录及其子目录中的文件，查找绝对路径或包含驱动器的路径
+ * 扫描指定目录及其子目录中的文件，查找 Windows 本地路径。
  * @param {string} directory - 要扫描的目录
  */
 function scanDirectory(directory) {
