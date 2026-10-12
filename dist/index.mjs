@@ -1,67 +1,56 @@
-import { readdirSync, readFileSync } from 'fs';
-import { join, relative } from 'path';
-
+import { readdirSync, readFileSync } from "fs";
+import { join, relative } from "path";
 /**
  * 匹配 Windows 驱动器前缀的正则。
  */
 const pattern = /[A-Z]:\\/g;
-
 /** 需要检查的文件的后缀 */
-const fileFormats = process.env.FORMATS.split(',').map(format => format.trim());
-
+const fileFormats = process.env["FORMATS"].split(",").map(format => format.trim());
 /** 跳过的文件 */
-const skipFiles = process.env.SKIP_FILES.split(',').map(file => file.trim());
-
+const skipFiles = process.env["SKIP_FILES"].split(",").map(file => file.trim().replace(/\\/g, "/"));
 /** 跳过的文件夹 */
-const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim().replace(/\\/g, '/'));
-
+const skipFolders = process.env["SKIP_FOLDERS"].split(",").map(folder => folder.trim().replace(/\\/g, "/"));
 /**
  * 扫描指定目录及其子目录中的文件，查找 Windows 本地路径。
- * @param {string} directory - 要扫描的目录
+ * @param {string} directory 要扫描的目录
+ * @returns {boolean} 如果找到匹配的路径，则返回 `true`，否则返回 `false`。
  */
 function scanDirectory(directory) {
     let foundPath = false;
-
     // 读取目录中的所有条目（文件和文件夹）
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
         const filePath = join(directory, entry.name);
-        const relativePath = relative(process.cwd(), filePath).replace(/\\/g, '/');
-
+        const relativePath = relative(process.cwd(), filePath).replace(/\\/g, "/");
         // 检查是否在跳过的文件夹中
         if (skipFolders.some(folder => relativePath.startsWith(folder))) {
             continue;
         }
-
         // 如果是目录，则递归扫描该目录
         if (entry.isDirectory()) {
             foundPath = scanDirectory(filePath) || foundPath;
             continue;
         }
-
         // 如果不是文件，或者文件后缀不在指定的格式列表中，则跳过
         if (!entry.isFile() || !fileFormats.some(format => entry.name.endsWith(`.${format}`))) {
             continue;
         }
-
         // 检查是否在跳过的文件列表中
         if (skipFiles.includes(relativePath)) {
             continue;
         }
-
-        const content = readFileSync(filePath, 'utf8');
+        const content = readFileSync(filePath, "utf8");
         for (const match of content.matchAll(pattern)) {
             // 输出匹配到的路径
             console.error(`✕ 在 ${filePath} 中发现本地路径: ${match[0]}`);
             foundPath = true;
         }
     }
-
     return foundPath;
 }
-
 // 在所有文件处理完成后输出结果
 if (scanDirectory(process.cwd())) {
     process.exit(1); // 如果发现路径，退出并且有非零状态码
-} else {
-    console.log("✓ 所有文件检测完毕，未发现本地路径");
+}
+else {
+    console.log("✓ 所有文件检查完毕，未发现本地路径");
 }
