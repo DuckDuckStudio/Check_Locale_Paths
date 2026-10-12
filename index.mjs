@@ -7,13 +7,13 @@ import { join, relative } from 'path';
 const pattern = /[A-Z]:\\/g;
 
 /** 需要检查的文件的后缀 */
-const fileFormats = process.env.FORMATS.split(',').map(format => `**/*.${format.trim()}`);
+const fileFormats = process.env.FORMATS.split(',').map(format => format.trim());
 
 /** 跳过的文件 */
 const skipFiles = process.env.SKIP_FILES.split(',').map(file => file.trim());
 
 /** 跳过的文件夹 */
-const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim());
+const skipFolders = process.env.SKIP_FOLDERS.split(',').map(file => file.trim().replace(/\\/g, '/'));
 
 /**
  * 扫描指定目录及其子目录中的文件，查找 Windows 本地路径。
@@ -28,7 +28,7 @@ function scanDirectory(directory) {
         const relativePath = relative(process.cwd(), filePath).replace(/\\/g, '/');
 
         // 检查是否在跳过的文件夹中
-        if (skipFolders.some(folder => relativePath.startsWith(folder.replace(/\\/g, '/')))) {
+        if (skipFolders.some(folder => relativePath.startsWith(folder))) {
             continue;
         }
 
