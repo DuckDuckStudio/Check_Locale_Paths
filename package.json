@@ -23,9 +23,6 @@
     "test": "node index.mjs",
     "lint": "npx eslint --rule \"semi: [error, always]\""
   },
-  "dependencies": {
-    "glob": "^13.0.5"
-  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.11.0",
