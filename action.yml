@@ -38,7 +38,7 @@ runs:
       shell: bash
       run: |-
         git clone https://github.com/DuckDuckStudio/Check_Locale_Paths -b main
-        cp Check_Locale_Paths/index.mjs Check_Locale_Paths.mjs
+        cp Check_Locale_Paths/dist/index.mjs Check_Locale_Paths.mjs
         rm -r Check_Locale_Paths
 
     - name: 检查本地路径
