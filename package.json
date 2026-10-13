@@ -1,6 +1,6 @@
 {
   "name": "check_locale_paths",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "检查你的网站项目中是否意外的使用了本地路径。",
   "keywords": [
     "checker",
