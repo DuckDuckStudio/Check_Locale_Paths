@@ -9,7 +9,7 @@ on:
 permissions: {}
 
 jobs:
-  check-url:
+  eslint:
     runs-on: ubuntu-latest
 
     steps:
