@@ -9,7 +9,7 @@ on:
 permissions: {}
 
 jobs:
-  check-url:
+  vitest:
     runs-on: ubuntu-latest
 
     steps:
