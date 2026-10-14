@@ -47,7 +47,3 @@ jobs:
           # skip_folders: node_modules
           # formats: html,css,js,mjs,ts,mts
 ```
-
-## 星星 🌟
-如果您认为本项目对您有帮助，还请给本项目一个小小的 Star 。
-[![星标历史](https://api.star-history.com/svg?repos=DuckDuckStudio/Check_Locale_Paths&type=Date)](https://star-history.com/#DuckDuckStudio/Check_Locale_Paths&Date)
